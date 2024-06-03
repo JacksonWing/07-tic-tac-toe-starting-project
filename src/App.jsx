@@ -17,7 +17,7 @@ const INITIAL_GAME_BOARD = [
   [ null, null, null ],
 ];
 
-function deriveActivePlayer(gameTurns) {
+function deriveActivePlayer(gameTurns) { // Checks the gameTurns state to determine who the active player is, and returns the current player
   let currentPlayer = 'X';
 
         if( gameTurns.length > 0 && gameTurns[0].player === 'X'){
@@ -27,21 +27,20 @@ function deriveActivePlayer(gameTurns) {
         return currentPlayer;
 }
 
-function deriveGameBoard(gameTurns){
+function deriveGameBoard(gameTurns){ // Gets the row and column of the selected square and setting the value to the active player symbol
   let gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
 
     for (const turn of gameTurns){
         const { square, player } = turn;
         const { row, col } = square;
 
-        gameBoard[row][col] = player; // Gets the row and column of the selected square and setting the value to the active
-                                      //  player symbol
+        gameBoard[row][col] = player; 
     }
 
     return gameBoard;
 }
 
-function deriveWinner(gameBoard, players){
+function deriveWinner(gameBoard, players){ // Compares the current gameboard to the eight winning combinations to determine if there is a winner
 
   let winner = null;
 
@@ -61,9 +60,9 @@ function deriveWinner(gameBoard, players){
 }
 
 function App() {
-  const [ players, setPlayers ] = useState(PLAYERS);
-  const [ gameTurns, setGameTurns ] = useState([])
-  //const [ activePlayer, setActivePlayer ] = useState('X');
+  const [ players, setPlayers ] = useState(PLAYERS); // State is used to change player name
+  const [ gameTurns, setGameTurns ] = useState([]);  // State is used to update the current player and gameboard
+  
 
   const activePlayer = deriveActivePlayer(gameTurns);
 
@@ -73,8 +72,8 @@ function App() {
 
   const hasDraw = gameTurns.length === 9 && !winner;
 
-  function handleSelectSquare( rowIndex, colIndex ){
-    //setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+  function handleSelectSquare( rowIndex, colIndex ){ // Invokes the function whenever a unselected square on the gameboard is chosen. 
+    
     setGameTurns((prevTurns) => {
         
       const currentPlayer = deriveActivePlayer(prevTurns);
@@ -88,11 +87,11 @@ function App() {
     });
   }
 
-  function handleRematch() {
+  function handleRematch(){ // Resets the gameboard
     setGameTurns([]);
   }
 
-  function handlePlayerNameChange(symbol, newName){
+  function handlePlayerNameChange(symbol, newName){ // Gets the new name and passes it as a property to the player component
     setPlayers(prevPlayers => {
       return {
         ...prevPlayers,

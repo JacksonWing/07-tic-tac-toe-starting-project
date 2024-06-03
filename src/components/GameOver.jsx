@@ -1,4 +1,4 @@
-export default function GameOver({winner, onRematch}) {
+export default function GameOver({winner, onRematch}) { // Returns a gameover screen when winner/draw has been determined
     return(
     <div id="game-over">
         <h2>Game Over!</h2>

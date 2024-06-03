@@ -1,15 +1,4 @@
-export default function GameBoard( { onSelectSquare, board } ) {
-  
-    // const [ gameBoard, setGameBoard ] = useState(initialGameBoard);
-
-    // function selectSquare(rowIndex, colIndex){
-    //     setGameBoard((prevGameBoard) => {
-    //         const updateGameBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-    //         updateGameBoard[rowIndex][colIndex] = activePlayerSymbol;
-    //         return updateGameBoard;
-    //     });
-    //     selectedSquare();
-    // }
+export default function GameBoard( { onSelectSquare, board } ) { // Dynamically changes the gameboard based on which square in the grid was clicked on
     
     return (
         <ol id="game-board">
